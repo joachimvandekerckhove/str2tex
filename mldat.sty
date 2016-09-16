@@ -1,0 +1,21 @@
+% Preamble
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mldat}[2016/03/03 Lookup for MATLAB variables]
+
+\newcommand{\mlg}[1]{%
+  \@ifundefined{lookup@#1}{%
+    \PackageError{mldat}{MATLAB record "mldat" doesn't have variable "#1"}{%
+      You haven't defined a variable named "#1". %
+    }%
+  }{%
+    \@nameuse{lookup@#1}%
+  }%
+}
+\newcommand{\lookupPut}[2]{%
+  \@namedef{lookup@#1}{#2}%
+}
+
+% Lookup table values
+\lookupPut{chains}{4}
+\lookupPut{samples}{60}
+\lookupPut{fig1}{test}
